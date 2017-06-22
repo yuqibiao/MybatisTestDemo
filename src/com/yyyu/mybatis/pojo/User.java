@@ -1,4 +1,4 @@
-package com.yyyu.mybatis.pojo.bean;
+package com.yyyu.mybatis.pojo;
 
 import java.util.Date;
 

@@ -2,8 +2,8 @@ package com.yyyu.mybatis.test;
 
 import com.yyyu.mybatis.dao.UserDao;
 import com.yyyu.mybatis.dao.inter.IUserDao;
-import com.yyyu.mybatis.mapper_dao.IUserMapper;
-import com.yyyu.mybatis.pojo.bean.User;
+import com.yyyu.mybatis.mapper_dao.UserMapper;
+import com.yyyu.mybatis.pojo.User;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -138,12 +138,12 @@ public class MybatisTest {
     public void testMapperDao(){
 /*
         SqlSession session = sessionFactory.openSession();
-         IUserMapper userMapper = session.getMapper(IUserMapper.class);
+         UserMapper userMapper = session.getMapper(UserMapper.class);
          User user = userMapper.queryByUserId(1);
         System.out.println(user);*/
 
         SqlSession session = sessionFactory.openSession();
-         IUserMapper userMapper = session.getMapper(IUserMapper.class);
+         UserMapper userMapper = session.getMapper(UserMapper.class);
          List<User>  userList= userMapper.queryByUsername("%张%");
         for (User user:userList) {
             System.out.println(user);

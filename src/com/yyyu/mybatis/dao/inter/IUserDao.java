@@ -1,6 +1,6 @@
 package com.yyyu.mybatis.dao.inter;
 
-import com.yyyu.mybatis.pojo.bean.User;
+import com.yyyu.mybatis.pojo.User;
 
 /**
  * 功能：用户表对应得dao操作接口

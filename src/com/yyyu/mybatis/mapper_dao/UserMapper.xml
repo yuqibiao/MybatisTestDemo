@@ -5,7 +5,7 @@
 
 <!--namespace:命名空间用于隔离sql，
     使用动态代理时namespace必须和Mapper接口类路径一致-->
-<mapper namespace="com.yyyu.mybatis.mapper_dao.IUserMapper">
+<mapper namespace="com.yyyu.mybatis.mapper_dao.UserMapper">
 
     <!--这里得user是自定义得别名-->
     <select id="queryByUserId" parameterType="int"
@@ -17,7 +17,7 @@
 
     <!--返回List时resultType写得是泛型类型-->
     <select id="queryByUsername" parameterType="string"
-            resultType="com.yyyu.mybatis.pojo.bean.User">
+            resultType="com.yyyu.mybatis.pojo.User">
         SELECT *
         FROM user
         WHERE username LIKE #{username}
@@ -33,19 +33,19 @@
     里面必须写value。
     -->
     <select id="queryByUsername2" parameterType="string"
-            resultType="com.yyyu.mybatis.pojo.bean.User">
+            resultType="com.yyyu.mybatis.pojo.User">
         SELECT *
         FROM user
         WHERE username LIKE '%${value}%';
     </select>
 
-    <select id="saveUser" parameterType="com.yyyu.mybatis.pojo.bean.User">
+    <select id="saveUser" parameterType="com.yyyu.mybatis.pojo.User">
         INSERT INTO
             user (username, sex, birthday, address)
             VALUE(#{username} , #{sex} , #{birthday} , #{address})
     </select>
 
-    <select id="updateByUserId"  parameterType="com.yyyu.mybatis.pojo.bean.User">
+    <select id="updateByUserId"  parameterType="com.yyyu.mybatis.pojo.User">
         UPDATE user
         SET birthday=#{birthday}
         WHERE id = #{id}

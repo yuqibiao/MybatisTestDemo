@@ -1,7 +1,7 @@
 package com.yyyu.mybatis.dao;
 
 import com.yyyu.mybatis.dao.inter.IUserDao;
-import com.yyyu.mybatis.pojo.bean.User;
+import com.yyyu.mybatis.pojo.User;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 

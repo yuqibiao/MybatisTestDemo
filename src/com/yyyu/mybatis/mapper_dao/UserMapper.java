@@ -1,6 +1,6 @@
 package com.yyyu.mybatis.mapper_dao;
 
-import com.yyyu.mybatis.pojo.bean.User;
+import com.yyyu.mybatis.pojo.User;
 
 import java.util.List;
 
@@ -10,7 +10,7 @@ import java.util.List;
  * @author yu
  * @date 2017/6/22.
  */
-public interface IUserMapper {
+public interface UserMapper {
 
     /*这里得名字要和User.xml文件中得id名一致*/
     User queryByUserId(int id);
