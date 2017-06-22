@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!--namespace:命名空间用于隔离sql，
+    使用动态代理时namespace必须和Mapper接口类路径一致-->
+<mapper namespace="com.yyyu.mybatis.mapper_dao.IUserMapper">
+
+    <!--这里得user是自定义得别名-->
+    <select id="queryByUserId" parameterType="int"
+            resultType="user">
+        SELECT *
+        FROM user
+        WHERE id = #{id}
+    </select>
+
+    <!--返回List时resultType写得是泛型类型-->
+    <select id="queryByUsername" parameterType="string"
+            resultType="com.yyyu.mybatis.pojo.bean.User">
+        SELECT *
+        FROM user
+        WHERE username LIKE #{username}
+    </select>
+    <!--
+    #{}表示一个占位符号，通过#{}可以实现preparedStatement向占位符中设置值，
+    自动进行java类型和jdbc类型转换。#{}可以有效防止sql注入。 #{}可以接收简单
+    类型值或pojo属性值。 如果parameterType传输单个简单类型值，#{}括号中可
+    以是value或其它名称。
+    ${}表示拼接sql串，通过${}可以将parameterType 传入的内容拼接在sql中且不进
+    行jdbc类型转换， ${}可以接收简单类型值或pojo属性值，如果parameterType传
+    输单个简单类型值，${}括号中只能是value。如果传入的参数是简单数据类型，${}
+    里面必须写value。
+    -->
+    <select id="queryByUsername2" parameterType="string"
+            resultType="com.yyyu.mybatis.pojo.bean.User">
+        SELECT *
+        FROM user
+        WHERE username LIKE '%${value}%';
+    </select>
+
+    <select id="saveUser" parameterType="com.yyyu.mybatis.pojo.bean.User">
+        INSERT INTO
+            user (username, sex, birthday, address)
+            VALUE(#{username} , #{sex} , #{birthday} , #{address})
+    </select>
+
+    <select id="updateByUserId"  parameterType="com.yyyu.mybatis.pojo.bean.User">
+        UPDATE user
+        SET birthday=#{birthday}
+        WHERE id = #{id}
+    </select>
+
+    <select id="deleteByUserId" parameterType="int">
+        DELETE FROM user
+        WHERE id = #{id}
+    </select>
+
+</mapper>
