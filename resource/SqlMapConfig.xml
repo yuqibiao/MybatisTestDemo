@@ -38,9 +38,9 @@
     <!--加载映射文件-->
     <mappers>
 
-        <mapper resource="com/yyyu/mybatis/mapper_dao/UserMapper.xml"/>
+        <!--<mapper resource="com/yyyu/mybatis/mapper_dao/UserMapper.xml"/>-->
         <!--此种方法要求mapper接口名称和mapper映射文件名称相同，且放在同一个目录中。-->
-        <!--<package name="com.yyyu.mybatis.mapper_dao.UserMapper"/>-->
+        <package name="com.yyyu.mybatis.mapper_dao"/>
     </mappers>
 
 </configuration>
