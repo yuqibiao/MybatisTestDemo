@@ -1,6 +1,7 @@
 package com.yyyu.mybatis.pojo;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * 功能：User Bean
@@ -14,6 +15,9 @@ public class User {
     private String sex;// 性别
     private Date birthday;// 生日
     private String address;// 地址
+
+    /*一对多关系*/
+    private List<UserOrder> orderList;
 
     public User() {
 
@@ -59,8 +63,16 @@ public class User {
         this.address = address;
     }
 
+    public List<UserOrder> getOrderList() {
+        return orderList;
+    }
+
+    public void setOrderList(List<UserOrder> orderList) {
+        this.orderList = orderList;
+    }
+
     @Override
     public String toString() {
-        return "username："+username+"  sex："+sex+"  birthday："+birthday+"  address："+address;
+        return "user_id："+id+"   username："+username+"  sex："+sex+"  birthday："+birthday+"  address："+address;
     }
 }

@@ -3,7 +3,9 @@ package com.yyyu.mybatis.test;
 import com.yyyu.mybatis.dao.UserDao;
 import com.yyyu.mybatis.dao.inter.IUserDao;
 import com.yyyu.mybatis.mapper_dao.UserMapper;
+import com.yyyu.mybatis.mapper_dao.UserOrderMapper;
 import com.yyyu.mybatis.pojo.User;
+import com.yyyu.mybatis.pojo.UserOrder;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -149,6 +151,35 @@ public class MybatisTest {
             System.out.println(user);
         }
     }
+
+    @Test
+    public void testSaveOrder(){
+        SqlSession session = sessionFactory.openSession();
+        UserOrderMapper userOrderMapper = session.getMapper(UserOrderMapper.class);
+        UserMapper userMapper = session.getMapper(UserMapper.class);
+        User user = userMapper.queryByUserId(1);
+        UserOrder order = new UserOrder();
+        order.setUser(user);
+        order.setCreateTime(new Date(System.currentTimeMillis()));
+        order.setTip("用户订单22222");
+        userOrderMapper.saveOrder(order);
+        session.commit();;
+        session.close();
+    }
+
+    @Test
+    public void getOrderByUserId(){
+        SqlSession session = sessionFactory.openSession();
+        UserMapper userMapper = session.getMapper(UserMapper.class);
+        User user =  userMapper.getOrderByUserId(1);
+        System.err.println("user=="+user);
+        for (UserOrder order : user.getOrderList()){
+            System.err.println("order=="+order);
+        }
+        session.commit();
+        session.close();
+    }
+
 
 
 }

@@ -17,4 +17,6 @@ public interface UserMapper {
 
     List<User> queryByUsername(String username);
 
+    User getOrderByUserId(Integer userId);
+
 }

@@ -56,4 +56,25 @@
         WHERE id = #{id}
     </select>
 
+    <!--一对多查询-->
+
+    <resultMap id="userOrderResultMap" type="com.yyyu.mybatis.pojo.User">
+        <id property="id" column="id"/>
+        <result property="username" column="username"/>
+        <collection property="orderList" javaType="List" ofType="com.yyyu.mybatis.pojo.UserOrder">
+            <id property="id" column="order_id"/>
+            <result property="createTime" column="create_time"/>
+            <result property="tip" column="tip"/>
+        </collection>
+    </resultMap>
+    <select id="getOrderByUserId" parameterType="int" resultMap="userOrderResultMap">
+        SELECT user.id ,user.username ,
+            /*两个表id同名 给order表中id添加别名以区分*/
+            user_order.id  "order_id",
+            user_order.create_time , user_order.tip
+        FROM user , user_order
+        where user.id = user_order.user_id AND user.id = #{value};
+    </select>
+
+
 </mapper>
